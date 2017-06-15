@@ -1,0 +1,97 @@
+ <link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/jquery-ui-1.11.2.custom/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/jquery-ui-1.11.2.custom/jquery-ui.structure.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/jquery-ui-1.11.2.custom/jquery-ui.theme.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/plugins/ui.multiselect.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/plugins/searchFilter.css" />
+ 
+<style type="text/css">
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 75%;
+}
+.center .ui-jqgrid {
+ margin-left: auto;
+ margin-right: auto;
+}
+</style>
+
+<script src="jqgrid/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script src="jqgrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $.jgrid.no_legacy_api = true;
+</script>
+<script src="jqgrid/css/jquery-ui-1.11.2.custom/jquery-ui.min.js" type="text/javascript"></script>
+<!--<script src="jqgrid/plugins/grid.addons.js" type="text/javascript"></script>-->
+<!--<script src="jqgrid/plugins/grid.postext.js" type="text/javascript"></script>-->
+<!--<script src="jqgrid/plugins/grid.setcolumns.js" type="text/javascript"></script>-->
+<script src="jqgrid/plugins/jquery.searchFilter.js" type="text/javascript"></script>
+<script src="jqgrid/plugins/jquery.contextmenu.js" type="text/javascript"></script>
+<script src="jqgrid/plugins/jquery.tablednd.js" type="text/javascript"></script>
+<script src="jqgrid/plugins/ui.multiselect.js" type="text/javascript"></script>
+<script src="jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function () {
+    $("#list").jqGrid({
+        
+        datatype: "local",
+
+        colNames:['Projects','Environment', 'Site', 'Sequence Type','Project ID','# OF Total Sequences','# of ORFs','# of Samples','ReadLength','Platform','Create Date','Update Date'],
+        colModel:[
+            {name:'projects',index:'projects', width:'100%'},
+            {name:'environment',index:'environment', width:'100%'},
+            {name:'site',index:'site', width:'100%'},
+            {name:'sequencetype',index:'sequencetype', width:'100%'},
+            {name:'projectid',index:'projectid', width:'100%'},     
+            {name:'oftotalsequences',index:'oftotalsequences', width:'100%',sorttype:'int'},      
+            {name:'oforfs',index:'oforfs',witdh:'100%',sorttype:'int'},
+            {name:'ofsamples',index:'ofsamples',width:'100%',sorttype:'int'},
+            {name:'readlength',index:'readlength',width:'100%',sorttype:'int'},
+            {name:'platform',index:'platform',width:'100%'},
+            {name:'createdate',index:'createdate',width:'100%',sorttype:'date'},
+            {name:'updatedate',index:'updatedate',width:'100%',sorttype:'date'}       
+        ],
+        height: '50%',
+        pager: "#pager",
+        rowNum: 20,
+        rowList: [10, 20, 30],
+        sortname: "id",
+        sortorder: "desc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        caption: "Projects"
+    }); 
+	for(var i=0;i<=testdata.length;i++)
+    	$("#list").jqGrid('addRowData',i+1,testdata[i]);
+	$("#list").jqGrid('navGrid','#pager',
+            {add:false,del:false,edit:false},//options
+            {}, // edit options
+            {}, // add options
+            {},//delete options
+            {multipleSearch:true,multipleGroup:true,showQuery:true}//search
+        );
+	$("#list").jqGrid('navButtonAdd','#pager',{
+    	caption: "Columns",
+    	title: "Reorder Columns",
+    	onClickButton : function (){
+        	$("#list").jqGrid('columnChooser');
+		}
+    });
+}); 
+
+var testdata = [
+        {projects:"MetaTongue",environment:"Human",site:"Oral",sequencetype:"WGS",projectid:"MGP-D001",oftotalsequences:"50000",oforfs:"15000",ofsamples:"183",readlength:"1500",platform:"Illumina Hiseq 2000",createdate:"2014-08-12",updatedate:"2014-10-16"},
+        {projects:"MetaIntestinal",environment:"Human",site:"Feces",sequencetype:"WGS",projectid:"MGP-D002",oftotalsequences:"100000",oforfs:"25000",ofsamples:"200",readlength:"1385",platform:"Illumina GA II",createdate:"2014-05-12",updatedate:"2014-10-12"},
+        {projects:"Meta-LakeTai",environment:"Water",site:"Algae",sequencetype:"16s rRNA",projectid:"MGP-D003",oftotalsequences:"160000",oforfs:"43000",ofsamples:"300",readlength:"1634",platform:"Illumina Hiseq 2000",createdate:"2013-01-12",updatedate:"2014-10-16"},
+        {projects:"MetaPM",environment:"Air",site:"Bacteria",sequencetype:"16s rRNA",projectid:"MGP-D004",oftotalsequences:"80600",oforfs:"4000",ofsamples:"100",readlength:"250",platform:"Sanger",createdate:"2000-06-22",updatedate:"2002-06-05"},
+        {projects:"MetaRice",environment:"Animal",site:"Feces",sequencetype:"16s rRNA",projectid:"MGP-D005",oftotalsequences:"15000",oforfs:"3000",ofsamples:"20",readlength:"300",platform:"Illumina GA II",createdate:"2003-01-12",updatedate:"2006-08-17"}
+        ];
+</script>
+
+<div class="center">
+    <table id="list"><tr><td></td></tr></table> 
+    <div id="pager"></div> 
+</div>

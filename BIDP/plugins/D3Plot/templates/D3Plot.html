@@ -1,0 +1,82 @@
+<h1>
+    Graph of Project {{ request.GET.id }}
+</h1>
+<span id="graphs">
+    <div id="carousel" class="carousel container slide" data-ride="carousel">
+        <ol class="carousel-indicators" style="margin-left: -66%; height: 0; bottom: 35px;">
+            <li data-target="#carousel" data-slide-to="0" style="background-color: black; opacity: .8;" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1" style="background-color: black; opacity: .8;"></li>
+            <li data-target="#carousel" data-slide-to="2" style="background-color: black; opacity: .8;"></li>
+            <li data-target="#carousel" data-slide-to="3" style="background-color: black; opacity: .8;"></li>
+            <li data-target="#carousel" data-slide-to="4" style="background-color: black; opacity: .8;"></li>
+            <li data-target="#carousel" data-slide-to="5" style="background-color: black; opacity: .8;"></li>
+            <li data-target="#carousel" data-slide-to="6" style="background-color: black; opacity: .8;"></li>
+            <li data-target="#carousel" data-slide-to="7" style="background-color: black; opacity: .8;"></li>
+            <li data-target="#carousel" data-slide-to="8" style="background-color: black; opacity: .8;"></li>
+            <li data-target="#carousel" data-slide-to="9" style="background-color: black; opacity: .8;"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <a id="box-plot-1"></a>
+            </div>
+            <div class="item">
+                <a id="box-plot-2"></a>
+            </div>
+            <div class="item">
+                <a id="line-plot-1"></a>
+            </div>
+            <div class="item">
+                <a id="line-plot-2"></a>
+            </div>
+            <div class="item">
+                <a id="multi-line-plot-1"></a>
+            </div>
+            <div class="item">
+                <a id="multi-line-plot-2"></a>
+            </div>
+            <div class="item">
+                <a id="line-plot2-1"></a>
+            </div>
+            <div class="item">
+                <a id="line-plot2-2"></a>
+            </div>
+            <div class="item">
+                <a id="multi-line-plot2-1"></a>
+            </div>
+            <div class="item">
+                <a id="multi-line-plot2-2"></a>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#carousel" role="button" data-slide="prev" style="height: 0;">
+            <span class="glyphicon glyphicon-circle-arrow-left" style="font-size: 150%; color: black; opacity: 1;"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel" role="button" data-slide="next"  style="height: 0;">
+            <span class="glyphicon glyphicon-circle-arrow-right" style="font-size: 150%; color: black; opacity: 1;"></span>
+        </a>
+    </div>
+    <a id="pie-chart"></a>
+</span>
+<script src="/static/D3.js/d3.js" charset="utf-8"></script>
+<script src="/static/D3.js/d3boxplot.js" charset="utf-8"></script>
+<script src="/static/D3.js/d3lineplot.js" charset="utf-8"></script>
+<script src="/static/D3.js/d3multilineplot.js" charset="utf-8"></script>
+<script src="/static/D3.js/d3lineplot2.js" charset="utf-8"></script>
+<script src="/static/D3.js/d3multilineplot2.js" charset="utf-8"></script>
+<script src="/static/D3.js/d3pie.js" charset="utf-8"></script>
+<script src="/static/D3.js/d3piechart.js" charset="utf-8"></script>
+<script>
+    d3.select("span#graphs").selectAll("a")
+        .style("text-decoration", "none");
+    var path = "/static/D3.js/{{ request.GET.id }}/";
+    d3boxplot("a#box-plot-1", path, "01-PerBaseQuality-1", ".txt");
+    d3boxplot("a#box-plot-2", path, "01-PerBaseQuality-2", ".txt");
+    d3lineplot("a#line-plot-1", path, "02-PerSequenceQualityScores-1", ".txt");
+    d3lineplot("a#line-plot-2", path, "02-PerSequenceQualityScores-2", ".txt");
+    d3multilineplot("a#multi-line-plot-1", path, "03-PerBaseSequenceContent-1", ".txt");
+    d3multilineplot("a#multi-line-plot-2", path, "03-PerBaseSequenceContent-2", ".txt");
+    d3lineplot2("a#line-plot2-1", path, "04-PerBaseGCContent-1", ".txt");
+    d3lineplot2("a#line-plot2-2", path, "04-PerBaseGCContent-2", ".txt");
+    d3multilineplot2("a#multi-line-plot2-1", path, "05-PerSequenceGCContent-1", ".txt");
+    d3multilineplot2("a#multi-line-plot2-2", path, "05-PerSequenceGCContent-2", ".txt");
+    d3piechart("#pie-chart", path, "06-COGContent", ".txt");
+</script>

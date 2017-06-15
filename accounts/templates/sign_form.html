@@ -1,0 +1,75 @@
+{% load i18n %}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#sign_in" data-toggle="pill">Sign in</a></li>
+        <li role="presentation"><a href="#sign_up" data-toggle="pill">Sign up</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="sign_in">
+        <form id="signin_form" action="{% url 'userena_signin' %}" method="post" enctype="multipart/form-data"
+            data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+            data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+            data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+            <div class="modal-body">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.META.HTTP_REFERER }}"/>
+                {{ signin_form.non_field_errors }}
+                {% for field in signin_form.hidden_fields %}
+                    {{ field.errors }}
+                    {{ field.as_hidden }}
+                {% endfor %}
+                {% for field in signin_form.visible_fields %}
+                    {{ field.errors }}
+                    <div class="form-group">
+                        {{ field.label_tag }} 
+                        {{ field }}
+                        <p class="help-block">{{ field.help_text }}</p>
+                    </div>
+                {% endfor %}
+                <a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">
+                    {% trans "Forgot your password?" %}
+                </a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="{% trans "Signin" %}"></input>
+            </div>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="sign_up">
+        <form id="signup_form" action="{% url 'userena_signup' %}" method="post" enctype="multipart/form-data"
+            data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+            data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+            data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+            <div class="modal-body">
+                {% csrf_token %}
+                {{ signup_form.non_field_errors }}
+                {% for field in signup_form.hidden_fields %}
+                    {{ field.errors }}
+                    {{ field.as_hidden }}
+                {% endfor %}
+                {% for field in signup_form.visible_fields %}
+                    {{ field.errors }}
+                    <div class="form-group">
+                        {{ field.label_tag }} 
+                        {{ field }}
+                        <p class="help-block">{{ field.help_text }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="{% trans "Signup" %}"></input>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#signin_form").bootstrapValidator();
+        $("#signup_form").bootstrapValidator();
+    });
+</script>

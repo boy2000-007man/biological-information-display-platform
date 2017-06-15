@@ -1,0 +1,22 @@
+{% load getkey %}
+<h2>
+{% if lang_zh_cn %}
+{{projectname}}工程
+{% else %}
+Project {{projectname}}
+{% endif %}
+<br>
+
+</h2>
+{% for i in info %}
+<table>
+<tr>
+	<td>{% if lang_zh_cn %}创建日期{% else %}Create Date{% endif %}</td>
+	<td>{{i.createDate}}</td>
+</tr>
+<tr>
+	<td>{% if lang_zh_cn %}描述{% else %}Description{% endif %}</td>
+	<td>{{i.description}}</td>
+</tr>
+</table>
+{% endfor %}

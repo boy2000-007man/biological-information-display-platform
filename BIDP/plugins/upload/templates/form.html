@@ -1,0 +1,43 @@
+{% if form %}
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#_modal">{{ form.legend }}</button>
+<div class="modal fade" id="_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">{{ form.legend }}</h4>
+      </div>
+      <form id="_form" action="{% url 'process_operation' %}" method="post" enctype="multipart/form-data"
+          data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+          data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+          data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+      <div class="modal-body">
+        {% csrf_token %}
+		{{ form.non_field_errors }}
+		{% for field in form.hidden_fields %}
+		    {{ field.errors }}
+		    {{ field.as_hidden }}
+		{% endfor %}
+		{% for field in form.visible_fields %}
+            {{ field.errors }}
+            <div class="form-group">
+                {{ field.label_tag }} 
+                {{ field }}
+                <p class="help-block">{{ field.help_text }}</p>
+            </div>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">{{ form.submit }}</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#_form").bootstrapValidator();
+    });
+</script>
+{% endif %}

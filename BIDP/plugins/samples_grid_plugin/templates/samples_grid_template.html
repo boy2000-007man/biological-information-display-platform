@@ -1,0 +1,281 @@
+{% load getkey %}
+
+<div class="center">
+    <table id="list"><tr><td></td></tr></table> 
+    <div id="pager"></div> 
+</div>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href="/static/jqgrid/css/jquery-ui-1.11.2.custom/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/static/jqgrid/css/jquery-ui-1.11.2.custom/jquery-ui.structure.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/static/jqgrid/css/jquery-ui-1.11.2.custom/jquery-ui.theme.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/static/jqgrid/css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/static/jqgrid/plugins/ui.multiselect.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/static/jqgrid/plugins/searchFilter.css" />
+ 
+<style type="text/css">
+.center .ui-jqgrid {
+ margin-left: auto;
+ margin-right: auto;
+}
+</style>
+
+<script src="/static/jqgrid/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script src="/static/jqgrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $.jgrid.no_legacy_api = true;
+</script>
+<script src="/static/jqgrid/css/jquery-ui-1.11.2.custom/jquery-ui.min.js" type="text/javascript"></script>
+<!--<script src="static/jqgrid/plugins/grid.addons.js" type="text/javascript"></script>-->
+<!--<script src="static/jqgrid/plugins/grid.postext.js" type="text/javascript"></script>-->
+<!--<script src="static/jqgrid/plugins/grid.setcolumns.js" type="text/javascript"></script>-->
+<script src="/static/jqgrid/plugins/jquery.searchFilter.js" type="text/javascript"></script>
+<script src="/static/jqgrid/plugins/jquery.contextmenu.js" type="text/javascript"></script>
+<script src="/static/jqgrid/plugins/jquery.tablednd.js" type="text/javascript"></script>
+<script src="/static/jqgrid/plugins/ui.multiselect.js" type="text/javascript"></script>
+<script src="/static/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+{% if request.GET.test %}
+var testdata = [
+        { "BMI" : 23, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 0, "Height" : 168, "N50Length" : 3770, "Nationality" : "NA", "ORFs" : 146160, "TCM_1" : "NA", "TCM_10" : "NA", "TCM_11" : "NA", "TCM_12" : 1, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 0, "TCM_17" : 0, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 1, "TCM_20" : 0, "TCM_21" : 0, "TCM_22" : 1, "TCM_23" : 1, "TCM_24" : 0, "TCM_25" : 1, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 1, "TCM_3" : 0, "TCM_30" : 0, "TCM_31" : 0, "TCM_32" : 0, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 1, "TCM_36" : 0, "TCM_37" : "脉弦、脉细", "TCM_38" : "均称型", "TCM_39" : "NA", "TCM_4" : 1, "TCM_40" : "NA", "TCM_41" : "NA", "TCM_42" : "糜烂", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 0, "TCM_8" : 1, "TCM_9" : 0, "Weight" : 65, "_id" : { "$oid" : "5418356d419a73b876d6a5e5" }, "age" : 39, "avgLength" : 380.035, "biochemIndex" : "NA", "bloodType" : "O", "cleanReads" : 44543140, "coldHalitosis" : 0, "completeORFs" : 54349, "drink" : 0, "gastritis" : "Y", "hostReads" : 6456484, "hostReadsPerc" : 0.126599, "hotHalitosis" : 1, "insertSize" : 359.397, "intake" : 1, "married" : "已婚", "maxLength" : 429434, "name" : "D076", "obeseness" : 0, "oralDisease" : "NA", "orfMappedReads" : 31131824, "rawReads" : 50999624, "residence" : "NA", "scaffoldsUp500bp" : 40003, "sex" : "男", "smoke" : 0, "temperature" : 0, "tenderness" : 1, "tongueColor" : "舌质暗", "tongueType" : "舌苔黄、舌苔薄" },
+		{ "BMI" : 20.8, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : "NA", "Height" : 170, "N50Length" : 3496, "Nationality" : "汉族", "ORFs" : 197227, "TCM_1" : "NA", "TCM_10" : "NA", "TCM_11" : 1, "TCM_12" : 1, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 0, "TCM_17" : 1, "TCM_18" : 1, "TCM_19" : 0, "TCM_2" : 1, "TCM_20" : 0, "TCM_21" : 0, "TCM_22" : 0, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 0, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 0, "TCM_3" : 0, "TCM_30" : 0, "TCM_31" : 0, "TCM_32" : 1, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 0, "TCM_36" : 1, "TCM_37" : "NA", "TCM_38" : "均称型", "TCM_39" : "胃大部切除", "TCM_4" : 0, "TCM_40" : "NA", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "息肉", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 0, "TCM_8" : 0, "TCM_9" : 0, "Weight" : 60, "_id" : { "$oid" : "5418356d419a73b876d6a5e6" }, "age" : 41, "avgLength" : 344.024, "biochemIndex" : "NA", "bloodType" : "NA", "cleanReads" : 47677598, "coldHalitosis" : 0, "completeORFs" : 60650, "drink" : 2, "gastritis" : "Y", "hostReads" : 11589230, "hostReadsPerc" : 0.195543, "hotHalitosis" : 1, "insertSize" : 404.974, "intake" : 1, "married" : "已婚", "maxLength" : 314359, "name" : "D077", "obeseness" : 0, "oralDisease" : "NA", "orfMappedReads" : 21737716, "rawReads" : 59266828, "residence" : "加格达奇", "scaffoldsUp500bp" : 58069, "sex" : "男", "smoke" : 2, "temperature" : 0, "tenderness" : 1, "tongueColor" : "舌质红、舌质暗", "tongueType" : "舌苔黄、舌苔腻" },
+		{ "BMI" : 22.3, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 1, "Height" : 164, "N50Length" : 4523, "Nationality" : "汉族", "ORFs" : 164849, "TCM_1" : "NA", "TCM_10" : "NA", "TCM_11" : 1, "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 0, "TCM_17" : 0, "TCM_18" : 1, "TCM_19" : 0, "TCM_2" : 1, "TCM_20" : 1, "TCM_21" : 0, "TCM_22" : 3, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 1, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 0, "TCM_3" : 0, "TCM_30" : 1, "TCM_31" : 0, "TCM_32" : 1, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 0, "TCM_36" : 1, "TCM_37" : "NA", "TCM_38" : "均称型", "TCM_39" : "轻度慢性胃炎", "TCM_4" : 0, "TCM_40" : "浅表", "TCM_41" : "NA", "TCM_42" : "糜烂", "TCM_43" : "息肉", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 0, "TCM_9" : 1, "Weight" : 60, "_id" : { "$oid" : "5418356d419a73b876d6a5e7" }, "age" : 74, "avgLength" : 383.988, "biochemIndex" : "NA", "bloodType" : "A", "cleanReads" : 29965472, "coldHalitosis" : 0, "completeORFs" : 61311, "drink" : 0, "gastritis" : "Y", "hostReads" : 41548200, "hostReadsPerc" : 0.580983, "hotHalitosis" : 0, "insertSize" : 379.417, "intake" : "NA", "married" : "已婚", "maxLength" : 373783, "name" : "D078", "obeseness" : 0, "oralDisease" : "NA", "orfMappedReads" : 19379824, "rawReads" : 71513672, "residence" : "NA", "scaffoldsUp500bp" : 43295, "sex" : "女", "smoke" : 0, "temperature" : 0, "tenderness" : 0, "tongueColor" : "NA", "tongueType" : "NA" },
+		{ "BMI" : 22.3, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 0, "Height" : 160, "N50Length" : 4089, "Nationality" : "汉族", "ORFs" : 284160, "TCM_1" : "NA", "TCM_10" : "NA", "TCM_11" : "NA", "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 1, "TCM_17" : 0, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 1, "TCM_20" : 1, "TCM_21" : 0, "TCM_22" : 0, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 1, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 0, "TCM_3" : 0, "TCM_30" : 1, "TCM_31" : 0, "TCM_32" : 1, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 1, "TCM_36" : 0, "TCM_37" : "脉弦、脉细、脉滑", "TCM_38" : "均称型", "TCM_39" : "轻度慢性胃炎", "TCM_4" : 0, "TCM_40" : "浅表", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 1, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 0, "TCM_9" : 1, "Weight" : 57, "_id" : { "$oid" : "5418356d419a73b876d6a5e8" }, "age" : 50, "avgLength" : 351.193, "biochemIndex" : "NA", "bloodType" : "A", "cleanReads" : 104095534, "coldHalitosis" : 0, "completeORFs" : 93106, "drink" : 1, "gastritis" : "Y", "hostReads" : 14741874, "hostReadsPerc" : 0.124051, "hotHalitosis" : 1, "insertSize" : 438.669, "intake" : "NA", "married" : "已婚", "maxLength" : 323470, "name" : "D079", "obeseness" : 0, "oralDisease" : "NA", "orfMappedReads" : 54296540, "rawReads" : 118837408, "residence" : "NA", "scaffoldsUp500bp" : 82727, "sex" : "女", "smoke" : 0, "temperature" : 0, "tenderness" : 1, "tongueColor" : "舌质淡、舌质暗", "tongueType" : "舌苔黄、舌苔薄" },
+		{ "BMI" : 27.7, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 1, "Height" : 170, "N50Length" : 3871, "Nationality" : "汉族", "ORFs" : 203414, "TCM_1" : "NA", "TCM_10" : "NA", "TCM_11" : 1, "TCM_12" : 1, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 1, "TCM_17" : 0, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 0, "TCM_20" : 0, "TCM_21" : 0, "TCM_22" : 0, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 0, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 0, "TCM_3" : 0, "TCM_30" : 0, "TCM_31" : 1, "TCM_32" : 0, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 0, "TCM_36" : 0, "TCM_37" : "脉沉、脉细、脉滑", "TCM_38" : "均称型", "TCM_39" : "NA", "TCM_4" : 0, "TCM_40" : "NA", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 0, "TCM_9" : 0, "Weight" : 80, "_id" : { "$oid" : "5418356d419a73b876d6a5e9" }, "age" : 51, "avgLength" : 375.801, "biochemIndex" : "NA", "bloodType" : "NA", "cleanReads" : 49420382, "coldHalitosis" : 0, "completeORFs" : 72717, "drink" : 1, "gastritis" : "Y", "hostReads" : 10843012, "hostReadsPerc" : 0.179927, "hotHalitosis" : 1, "insertSize" : 390.83, "intake" : "NA", "married" : "已婚", "maxLength" : 227249, "name" : "D080", "obeseness" : 1, "oralDisease" : "NA", "orfMappedReads" : 33838830, "rawReads" : 60263394, "residence" : "北京", "scaffoldsUp500bp" : 55075, "sex" : "男", "smoke" : 0, "temperature" : 0, "tenderness" : 1, "tongueColor" : "舌质淡、舌质暗", "tongueType" : "舌苔黄、舌苔腻、舌苔薄" },
+		{ "BMI" : 18, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 0, "Height" : 165, "N50Length" : 3964, "Nationality" : "汉族", "ORFs" : 287433, "TCM_1" : 0, "TCM_10" : "NA", "TCM_11" : 0, "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 0, "TCM_16" : 0, "TCM_17" : 0, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 0, "TCM_20" : 1, "TCM_21" : 0, "TCM_22" : 0, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 1, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 1, "TCM_3" : 0, "TCM_30" : 0, "TCM_31" : 1, "TCM_32" : 0, "TCM_33" : 0, "TCM_34" : 0, "TCM_35" : 0, "TCM_36" : 1, "TCM_37" : "脉沉、脉细", "TCM_38" : "瘦长型", "TCM_39" : "中度慢性胃炎", "TCM_4" : 1, "TCM_40" : "NA", "TCM_41" : "萎缩", "TCM_42" : "糜烂", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 1, "TCM_9" : 0, "Weight" : 49, "_id" : { "$oid" : "5418356d419a73b876d6a5ea" }, "age" : 30, "avgLength" : 382.149, "biochemIndex" : "NA", "bloodType" : "AB", "cleanReads" : 67625848, "coldHalitosis" : 0, "completeORFs" : 101144, "drink" : 0, "gastritis" : "Y", "hostReads" : 14082742, "hostReadsPerc" : 0.172353, "hotHalitosis" : 0, "insertSize" : 410.514, "intake" : 0, "married" : "未婚", "maxLength" : 297894, "name" : "D081", "obeseness" : -1, "oralDisease" : "NA", "orfMappedReads" : 43294288, "rawReads" : 81708590, "residence" : "北京", "scaffoldsUp500bp" : 79627, "sex" : "女", "smoke" : 0, "temperature" : 0, "tenderness" : 0, "tongueColor" : "舌质淡、舌质暗", "tongueType" : "舌苔腻、舌苔薄" },
+		{ "BMI" : 17.6, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 0, "Height" : 160, "N50Length" : 4450, "Nationality" : "汉族", "ORFs" : 215290, "TCM_1" : "NA", "TCM_10" : "NA", "TCM_11" : 1, "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 1, "TCM_17" : 0, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 1, "TCM_20" : 1, "TCM_21" : 1, "TCM_22" : 3, "TCM_23" : 1, "TCM_24" : 0, "TCM_25" : 0, "TCM_26" : 1, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 0, "TCM_3" : 0, "TCM_30" : 0, "TCM_31" : 0, "TCM_32" : 1, "TCM_33" : 0, "TCM_34" : 0, "TCM_35" : 0, "TCM_36" : 1, "TCM_37" : "脉弦、脉细、脉滑", "TCM_38" : "瘦长型", "TCM_39" : "NA", "TCM_4" : 1, "TCM_40" : "浅表", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 1, "TCM_9" : 0, "Weight" : 45, "_id" : { "$oid" : "5418356d419a73b876d6a5eb" }, "age" : 60, "avgLength" : 311.503, "biochemIndex" : "NA", "bloodType" : "NA", "cleanReads" : 43908776, "coldHalitosis" : 0, "completeORFs" : 104559, "drink" : 0, "gastritis" : "Y", "hostReads" : 17940088, "hostReadsPerc" : 0.290063, "hotHalitosis" : 1, "insertSize" : 409.707, "intake" : "NA", "married" : "已婚", "maxLength" : 279360, "name" : "D082", "obeseness" : -1, "oralDisease" : "NA", "orfMappedReads" : 29137430, "rawReads" : 61848864, "residence" : "山东梁山", "scaffoldsUp500bp" : 46293, "sex" : "女", "smoke" : 0, "temperature" : 0, "tenderness" : 1, "tongueColor" : "舌质红、舌质暗", "tongueType" : "舌苔黄、舌苔腻、舌苔厚" },
+		{ "BMI" : 23.8, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 0, "Height" : 174, "N50Length" : 2134, "Nationality" : "汉族", "ORFs" : 5398, "TCM_1" : 1, "TCM_10" : "NA", "TCM_11" : 1, "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 0, "TCM_17" : 1, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 0, "TCM_20" : 1, "TCM_21" : 0, "TCM_22" : 0, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 0, "TCM_26" : 1, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 0, "TCM_3" : 1, "TCM_30" : 1, "TCM_31" : 0, "TCM_32" : 1, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 1, "TCM_36" : 0, "TCM_37" : "脉弦、脉滑", "TCM_38" : "均称型", "TCM_39" : "多发性溃疡", "TCM_4" : 0, "TCM_40" : "NA", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "NA", "TCM_44" : "胆汁反流", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 1, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 0, "TCM_9" : 0, "Weight" : 72, "_id" : { "$oid" : "5418356d419a73b876d6a5ec" }, "age" : 52, "avgLength" : 257.081, "biochemIndex" : "NA", "bloodType" : "O", "cleanReads" : 841292, "coldHalitosis" : 0, "completeORFs" : 186, "drink" : 1, "gastritis" : "Y", "hostReads" : 2059200, "hostReadsPerc" : 0.7099490000000001, "hotHalitosis" : 0, "insertSize" : 383.592, "intake" : "NA", "married" : "已婚", "maxLength" : 6749, "name" : "D083", "obeseness" : 0, "oralDisease" : "NA", "orfMappedReads" : 157396, "rawReads" : 2900492, "residence" : "北京", "scaffoldsUp500bp" : 1485, "sex" : "男", "smoke" : 2, "temperature" : 0, "tenderness" : 1, "tongueColor" : "舌质红、舌质暗", "tongueType" : "舌苔黄、舌苔薄" },
+		{ "BMI" : 25.3, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 1, "Height" : 170, "N50Length" : 4564, "Nationality" : "汉族", "ORFs" : 211267, "TCM_1" : 1, "TCM_10" : "NA", "TCM_11" : "NA", "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 1, "TCM_17" : 0, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 0, "TCM_20" : 1, "TCM_21" : 0, "TCM_22" : 1, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 0, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 0, "TCM_29" : 0, "TCM_3" : 1, "TCM_30" : 0, "TCM_31" : 0, "TCM_32" : 1, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 1, "TCM_36" : 0, "TCM_37" : "脉弦、脉滑", "TCM_38" : "均称型", "TCM_39" : "轻度慢性胃炎", "TCM_4" : 0, "TCM_40" : "浅表", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 1, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 0, "TCM_9" : 1, "Weight" : 73, "_id" : { "$oid" : "5418356d419a73b876d6a5ed" }, "age" : 41, "avgLength" : 362.555, "biochemIndex" : "NA", "bloodType" : "O", "cleanReads" : 64958926, "coldHalitosis" : 0, "completeORFs" : 72367, "drink" : 2, "gastritis" : "Y", "hostReads" : 4406944, "hostReadsPerc" : 0.0635319, "hotHalitosis" : 1, "insertSize" : 443.612, "intake" : 1, "married" : "已婚", "maxLength" : 298327, "name" : "D084", "obeseness" : 1, "oralDisease" : "NA", "orfMappedReads" : 43879960, "rawReads" : 69365870, "residence" : "北京", "scaffoldsUp500bp" : 58919, "sex" : "男", "smoke" : 1, "temperature" : 0, "tenderness" : 0, "tongueColor" : "舌质淡、舌质暗", "tongueType" : "舌苔黄、舌苔腻" },
+		{ "BMI" : 25.5, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 0, "Height" : 177, "N50Length" : 3680, "Nationality" : "汉族", "ORFs" : 205285, "TCM_1" : 1, "TCM_10" : "NA", "TCM_11" : "NA", "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 0, "TCM_17" : 1, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 0, "TCM_20" : 1, "TCM_21" : 0, "TCM_22" : 0, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 1, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 0, "TCM_3" : 1, "TCM_30" : 0, "TCM_31" : 0, "TCM_32" : 0, "TCM_33" : 0, "TCM_34" : 0, "TCM_35" : 1, "TCM_36" : 0, "TCM_37" : "脉弦、脉细、脉滑", "TCM_38" : "瘦长型", "TCM_39" : "轻度慢性胃炎", "TCM_4" : 0, "TCM_40" : "NA", "TCM_41" : "NA", "TCM_42" : "糜烂", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 1, "TCM_9" : 0, "Weight" : 80, "_id" : { "$oid" : "5418356d419a73b876d6a5ee" }, "age" : 35, "avgLength" : 275.274, "biochemIndex" : "NA", "bloodType" : "O", "cleanReads" : 37463530, "coldHalitosis" : 0, "completeORFs" : 92773, "drink" : 1, "gastritis" : "Y", "hostReads" : 5638046, "hostReadsPerc" : 0.130808, "hotHalitosis" : 0, "insertSize" : 425.103, "intake" : 1, "married" : "已婚", "maxLength" : 375076, "name" : "D085", "obeseness" : 1, "oralDisease" : "NA", "orfMappedReads" : 21364328, "rawReads" : 43101576, "residence" : "北京", "scaffoldsUp500bp" : 49058, "sex" : "男", "smoke" : 2, "temperature" : 0, "tenderness" : 0, "tongueColor" : "舌质红、舌质暗", "tongueType" : "舌苔黄、舌苔腻、舌苔薄" },
+		{ "BMI" : 18, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 1, "Height" : 158, "N50Length" : 4770, "Nationality" : "汉族", "ORFs" : 164958, "TCM_1" : 0, "TCM_10" : "NA", "TCM_11" : 0, "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 1, "TCM_16" : 0, "TCM_17" : 0, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 1, "TCM_20" : 0, "TCM_21" : 1, "TCM_22" : 3, "TCM_23" : 1, "TCM_24" : 0, "TCM_25" : 0, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 1, "TCM_29" : 1, "TCM_3" : 0, "TCM_30" : 0, "TCM_31" : 0, "TCM_32" : 0, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 0, "TCM_36" : 1, "TCM_37" : "脉沉、脉细", "TCM_38" : "瘦长型", "TCM_39" : "中度慢性胃炎", "TCM_4" : 0, "TCM_40" : "浅表", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 0, "TCM_9" : 0, "Weight" : 45, "_id" : { "$oid" : "5418356d419a73b876d6a5ef" }, "age" : 54, "avgLength" : 407.869, "biochemIndex" : "NA", "bloodType" : "O", "cleanReads" : 55310880, "coldHalitosis" : 0, "completeORFs" : 64845, "drink" : 0, "gastritis" : "Y", "hostReads" : 2704166, "hostReadsPerc" : 0.0466115, "hotHalitosis" : 1, "insertSize" : 386.095, "intake" : 0, "married" : "已婚", "maxLength" : 738604, "name" : "D086", "obeseness" : -1, "oralDisease" : "NA", "orfMappedReads" : 43819188, "rawReads" : 58015046, "residence" : "北京", "scaffoldsUp500bp" : 42103, "sex" : "女", "smoke" : 0, "temperature" : 0, "tenderness" : 0, "tongueColor" : "舌质淡、舌质暗", "tongueType" : "舌苔腻" },
+		{ "BMI" : 28.1, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 1, "Height" : 160, "N50Length" : 3603, "Nationality" : "回族", "ORFs" : 182294, "TCM_1" : "NA", "TCM_10" : "NA", "TCM_11" : 1, "TCM_12" : 1, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 0, "TCM_16" : 0, "TCM_17" : 0, "TCM_18" : 0, "TCM_19" : 0, "TCM_2" : 1, "TCM_20" : 0, "TCM_21" : 0, "TCM_22" : 0, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 0, "TCM_26" : 0, "TCM_27" : "NA", "TCM_28" : 0, "TCM_29" : 1, "TCM_3" : 0, "TCM_30" : 0, "TCM_31" : 0, "TCM_32" : 0, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 0, "TCM_36" : 0, "TCM_37" : "脉弦、脉沉、脉细", "TCM_38" : "矮胖型", "TCM_39" : "NA", "TCM_4" : 0, "TCM_40" : "浅表", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "NA", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 1, "TCM_8" : 0, "TCM_9" : 0, "Weight" : 72, "_id" : { "$oid" : "5418356d419a73b876d6a5f0" }, "age" : 58, "avgLength" : 362.626, "biochemIndex" : "NA", "bloodType" : "NA", "cleanReads" : 36481948, "coldHalitosis" : 0, "completeORFs" : 61624, "drink" : 0, "gastritis" : "Y", "hostReads" : 16036322, "hostReadsPerc" : 0.305347, "hotHalitosis" : 0, "insertSize" : 380.198, "intake" : "NA", "married" : "已婚", "maxLength" : 192887, "name" : "D087", "obeseness" : 1, "oralDisease" : "NA", "orfMappedReads" : 23227522, "rawReads" : 52518270, "residence" : "北京", "scaffoldsUp500bp" : 50060, "sex" : "女", "smoke" : 0, "temperature" : 0, "tenderness" : 0, "tongueColor" : "舌质红、舌质暗", "tongueType" : "舌苔燥、舌苔薄" },
+		{ "BMI" : 18, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 1, "Height" : 173, "N50Length" : 4101, "Nationality" : "汉族", "ORFs" : 191249, "TCM_1" : "NA", "TCM_10" : "NA", "TCM_11" : 1, "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 0, "TCM_16" : 0, "TCM_17" : 0, "TCM_18" : 1, "TCM_19" : 0, "TCM_2" : 1, "TCM_20" : 0, "TCM_21" : 0, "TCM_22" : 0, "TCM_23" : 1, "TCM_24" : 0, "TCM_25" : 0, "TCM_26" : 0, "TCM_27" : 0, "TCM_28" : 1, "TCM_29" : 0, "TCM_3" : 0, "TCM_30" : 0, "TCM_31" : 1, "TCM_32" : 0, "TCM_33" : 0, "TCM_34" : 0, "TCM_35" : 0, "TCM_36" : 0, "TCM_37" : "脉沉、脉细", "TCM_38" : "瘦长型", "TCM_39" : "NA", "TCM_4" : 1, "TCM_40" : "NA", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "夏、冬", "TCM_5" : 0, "TCM_6" : 1, "TCM_7" : 0, "TCM_8" : 1, "TCM_9" : 0, "Weight" : 54, "_id" : { "$oid" : "5418356d419a73b876d6a5f1" }, "age" : 45, "avgLength" : 386.384, "biochemIndex" : "NA", "bloodType" : "O", "cleanReads" : 55351108, "coldHalitosis" : 1, "completeORFs" : 74079, "drink" : 0, "gastritis" : "Y", "hostReads" : 25625182, "hostReadsPerc" : 0.316453, "hotHalitosis" : 0, "insertSize" : 369.783, "intake" : 1, "married" : "已婚", "maxLength" : 224186, "name" : "D088", "obeseness" : -1, "oralDisease" : "NA", "orfMappedReads" : 35733202, "rawReads" : 80976290, "residence" : "北京", "scaffoldsUp500bp" : 51418, "sex" : "男", "smoke" : 2, "temperature" : 0, "tenderness" : 0, "tongueColor" : "舌质淡、舌质暗", "tongueType" : "舌苔白、舌苔腻、舌苔薄" },
+		{ "BMI" : 20.9, "ENTInflam" : "NA", "HBtest" : "NA", "HP" : 0, "Height" : 175, "N50Length" : 5417, "Nationality" : "汉族", "ORFs" : 183914, "TCM_1" : "NA", "TCM_10" : "NA", "TCM_11" : "NA", "TCM_12" : 0, "TCM_13" : "NA", "TCM_14" : "NA", "TCM_15" : 0, "TCM_16" : 1, "TCM_17" : 0, "TCM_18" : 1, "TCM_19" : 0, "TCM_2" : 1, "TCM_20" : 1, "TCM_21" : 0, "TCM_22" : 0, "TCM_23" : 0, "TCM_24" : 0, "TCM_25" : 0, "TCM_26" : 0, "TCM_27" : 0, "TCM_28" : 1, "TCM_29" : 1, "TCM_3" : 0, "TCM_30" : 0, "TCM_31" : 0, "TCM_32" : 0, "TCM_33" : 0, "TCM_34" : 1, "TCM_35" : 0, "TCM_36" : 0, "TCM_37" : "脉数、脉细", "TCM_38" : "均称型", "TCM_39" : "NA", "TCM_4" : 1, "TCM_40" : "NA", "TCM_41" : "NA", "TCM_42" : "NA", "TCM_43" : "NA", "TCM_44" : "NA", "TCM_45" : "NA", "TCM_46" : "NA", "TCM_47" : "冬", "TCM_5" : 0, "TCM_6" : 0, "TCM_7" : 0, "TCM_8" : 1, "TCM_9" : 0, "Weight" : 64, "_id" : { "$oid" : "5418356d419a73b876d6a5f2" }, "age" : 39, "avgLength" : 377.753, "biochemIndex" : "NA", "bloodType" : "NA", "cleanReads" : 61426444, "coldHalitosis" : 0, "completeORFs" : 65823, "drink" : 0, "gastritis" : "Y", "hostReads" : 33686862, "hostReadsPerc" : 0.354176, "hotHalitosis" : 0, "insertSize" : 409.582, "intake" : 1, "married" : "已婚", "maxLength" : 257877, "name" : "D089", "obeseness" : 0, "oralDisease" : "NA", "orfMappedReads" : 38401362, "rawReads" : 95113306, "residence" : "北京", "scaffoldsUp500bp" : 48130, "sex" : "男", "smoke" : 0, "temperature" : 0, "tenderness" : 0, "tongueColor" : "舌质红", "tongueType" : "舌苔燥、舌苔薄" }
+        ];
+{% else %}
+var testdata =
+[
+{% for i in data %}
+{
+BMI:"{{i.BMI}}",
+ENTInflam:"{{i.ENTInflam}}",
+HBtest:"{{i.HBtest}}",
+HP:"{{i.HP}}",
+Height:"{{i.Height}}",
+N50Length:"{{i.N50Length}}",
+Nationality:"{{i.Nationality}}",
+ORFs:"{{i.ORFs}}",
+TCM_1:"{{i.TCM_1}}",
+TCM_10:"{{i.TCM_10}}",
+TCM_11:"{{i.TCM_11}}",
+TCM_12:"{{i.TCM_12}}",
+TCM_13:"{{i.TCM_13}}",
+TCM_14:"{{i.TCM_14}}",
+TCM_15:"{{i.TCM_15}}",
+TCM_16:"{{i.TCM_16}}",
+TCM_17:"{{i.TCM_17}}",
+TCM_18:"{{i.TCM_18}}",
+TCM_19:"{{i.TCM_19}}",
+TCM_2:"{{i.TCM_2}}",
+TCM_20:"{{i.TCM_20}}",
+TCM_21:"{{i.TCM_21}}",
+TCM_22:"{{i.TCM_22}}",
+TCM_23:"{{i.TCM_23}}",
+TCM_24:"{{i.TCM_24}}",
+TCM_25:"{{i.TCM_25}}",
+TCM_26:"{{i.TCM_26}}",
+TCM_27:"{{i.TCM_27}}",
+TCM_28:"{{i.TCM_28}}",
+TCM_29:"{{i.TCM_29}}",
+TCM_3:"{{i.TCM_3}}",
+TCM_30:"{{i.TCM_30}}",
+TCM_31:"{{i.TCM_31}}",
+TCM_32:"{{i.TCM_32}}",
+TCM_33:"{{i.TCM_33}}",
+TCM_34:"{{i.TCM_34}}",
+TCM_35:"{{i.TCM_35}}",
+TCM_36:"{{i.TCM_36}}",
+TCM_37:"{{i.TCM_37}}",
+TCM_38:"{{i.TCM_38}}",
+TCM_39:"{{i.TCM_39}}",
+TCM_4:"{{i.TCM_4}}",
+TCM_40:"{{i.TCM_40}}",
+TCM_41:"{{i.TCM_41}}",
+TCM_42:"{{i.TCM_42}}",
+TCM_43:"{{i.TCM_43}}",
+TCM_44:"{{i.TCM_44}}",
+TCM_45:"{{i.TCM_45}}",
+TCM_46:"{{i.TCM_46}}",
+TCM_47:"{{i.TCM_47}}",
+TCM_5:"{{i.TCM_5}}",
+TCM_6:"{{i.TCM_6}}",
+TCM_7:"{{i.TCM_7}}",
+TCM_8:"{{i.TCM_8}}",
+TCM_9:"{{i.TCM_9}}",
+Weight:"{{i.Weight}}",
+_id:"{{i|getkey:'_id'}}",
+age:"{{i.age}}",
+avgLength:"{{i.avgLength}}",
+biochemIndex:"{{i.biochemIndex}}",
+bloodType:"{{i.bloodType}}",
+cleanReads:"{{i.cleanReads}}",
+coldHalitosis:"{{i.coldHalitosis}}",
+completeORFs:"{{i.completeORFs}}",
+drink:"{{i.drink}}",
+gastritis:"{{i.gastritis}}",
+hostReads:"{{i.hostReads}}",
+hostReadsPerc:"{{i.hostReadsPerc}}",
+hotHalitosis:"{{i.hotHalitosis}}",
+insertSize:"{{i.insertSize}}",
+intake:"{{i.intake}}",
+married:"{{i.married}}",
+maxLength:"{{i.maxLength}}",
+name:"{{i.name}}",
+obeseness:"{{i.obeseness}}",
+oralDisease:"{{i.oralDisease}}",
+orfMappedReads:"{{i.orfMappedReads}}",
+rawReads:"{{i.rawReads}}",
+residence:"{{i.residence}}",
+scaffoldsUp500bp:"{{i.scaffoldsUp500bp}}",
+sex:"{{i.sex}}",
+smoke:"{{i.smoke}}",
+temperature:"{{i.temperature}}",
+tenderness:"{{i.tenderness}}",
+tongueColor:"{{i.tongueColor}}",
+tongueType:"{{i.tongueType}}"
+}
+{%if not forloop.last %},{% endif %}
+{% endfor %}
+]
+{% endif %}
+    $mygrid=$("#list").jqGrid({
+        
+        datatype: "local",
+        
+        
+        
+        colNames:["BMI", "ENTInflam", "HBtest", "HP", "Height", "N50Length", "Nationality", "ORFs", "TCM_1", "TCM_10", "TCM_11", "TCM_12", "TCM_13", "TCM_14", "TCM_15", "TCM_16", "TCM_17", "TCM_18", "TCM_19", "TCM_2", "TCM_20", "TCM_21", "TCM_22", "TCM_23", "TCM_24", "TCM_25", "TCM_26", "TCM_27", "TCM_28", "TCM_29", "TCM_3", "TCM_30", "TCM_31", "TCM_32", "TCM_33", "TCM_34", "TCM_35", "TCM_36", "TCM_37", "TCM_38", "TCM_39", "TCM_4", "TCM_40", "TCM_41", "TCM_42", "TCM_43", "TCM_44", "TCM_45", "TCM_46", "TCM_47", "TCM_5", "TCM_6", "TCM_7", "TCM_8", "TCM_9", "Weight", "_id" , "age", "avgLength" , "biochemIndex", "bloodType", "cleanReads", "coldHalitosis", "completeORFs", "drink", "gastritis", "hostReads", "hostReadsPerc", "hotHalitosis", "insertSize", "intake", "married", "maxLength", "name", "obeseness", "oralDisease", "orfMappedReads", "rawReads", "residence", "scaffoldsUp500bp", "sex", "smoke", "temperature", "tenderness", "tongueColor", "tongueType" ],
+        colModel:[
+            {name:'BMI',index:'BMI',width:'100%', formatter:'showlink', formatoptions:{baseLinkUrl:'sample', addParam: '&test=1'}},
+{name:'ENTInflam',index:'ENTInflam',width:'100%',hidden:true},
+{name:'HBtest',index:'HBtest',width:'100%',hidden:true},
+{name:'HP',index:'HP',width:'100%',hidden:true},
+{name:'Height',index:'Height',width:'100%'},
+{name:'N50Length',index:'N50Length',width:'100%'},
+{name:'Nationality',index:'Nationality',width:'100%'},
+{name:'ORFs',index:'ORFs',width:'100%',hidden:true},
+{name:'TCM_1',index:'TCM_1',width:'100%',hidden:true},
+{name:'TCM_10',index:'TCM_10',width:'100%',hidden:true},
+{name:'TCM_11',index:'TCM_11',width:'100%',hidden:true},
+{name:'TCM_12',index:'TCM_12',width:'100%',hidden:true},
+{name:'TCM_13',index:'TCM_13',width:'100%',hidden:true},
+{name:'TCM_14',index:'TCM_14',width:'100%',hidden:true},
+{name:'TCM_15',index:'TCM_15',width:'100%',hidden:true},
+{name:'TCM_16',index:'TCM_16',width:'100%',hidden:true},
+{name:'TCM_17',index:'TCM_17',width:'100%',hidden:true},
+{name:'TCM_18',index:'TCM_18',width:'100%',hidden:true},
+{name:'TCM_19',index:'TCM_19',width:'100%',hidden:true},
+{name:'TCM_2',index:'TCM_2',width:'100%',hidden:true},
+{name:'TCM_20',index:'TCM_20',width:'100%',hidden:true},
+{name:'TCM_21',index:'TCM_21',width:'100%',hidden:true},
+{name:'TCM_22',index:'TCM_22',width:'100%',hidden:true},
+{name:'TCM_23',index:'TCM_23',width:'100%',hidden:true},
+{name:'TCM_24',index:'TCM_24',width:'100%',hidden:true},
+{name:'TCM_25',index:'TCM_25',width:'100%',hidden:true},
+{name:'TCM_26',index:'TCM_26',width:'100%',hidden:true},
+{name:'TCM_27',index:'TCM_27',width:'100%',hidden:true},
+{name:'TCM_28',index:'TCM_28',width:'100%',hidden:true},
+{name:'TCM_29',index:'TCM_29',width:'100%',hidden:true},
+{name:'TCM_3',index:'TCM_3',width:'100%',hidden:true},
+{name:'TCM_30',index:'TCM_30',width:'100%',hidden:true},
+{name:'TCM_31',index:'TCM_31',width:'100%',hidden:true},
+{name:'TCM_32',index:'TCM_32',width:'100%',hidden:true},
+{name:'TCM_33',index:'TCM_33',width:'100%',hidden:true},
+{name:'TCM_34',index:'TCM_34',width:'100%',hidden:true},
+{name:'TCM_35',index:'TCM_35',width:'100%',hidden:true},
+{name:'TCM_36',index:'TCM_36',width:'100%',hidden:true},
+{name:'TCM_37',index:'TCM_37',width:'100%',hidden:true},
+{name:'TCM_38',index:'TCM_38',width:'100%',hidden:true},
+{name:'TCM_39',index:'TCM_39',width:'100%',hidden:true},
+{name:'TCM_4',index:'TCM_4',width:'100%',hidden:true},
+{name:'TCM_40',index:'TCM_40',width:'100%',hidden:true},
+{name:'TCM_41',index:'TCM_41',width:'100%',hidden:true},
+{name:'TCM_42',index:'TCM_42',width:'100%',hidden:true},
+{name:'TCM_43',index:'TCM_43',width:'100%',hidden:true},
+{name:'TCM_44',index:'TCM_44',width:'100%',hidden:true},
+{name:'TCM_45',index:'TCM_45',width:'100%',hidden:true},
+{name:'TCM_46',index:'TCM_46',width:'100%',hidden:true},
+{name:'TCM_47',index:'TCM_47',width:'100%',hidden:true},
+{name:'TCM_5',index:'TCM_5',width:'100%',hidden:true},
+{name:'TCM_6',index:'TCM_6',width:'100%',hidden:true},
+{name:'TCM_7',index:'TCM_7',width:'100%',hidden:true},
+{name:'TCM_8',index:'TCM_8',width:'100%',hidden:true},
+{name:'TCM_9',index:'TCM_9',width:'100%',hidden:true},
+{name:'Weight',index:'Weight',width:'100%'},
+{name:'_id',index:'_id',width:'100%'},
+{name:'age',index:'age',width:'100%'},
+{name:'avgLength',index:'avgLength',width:'100%'},
+{name:'biochemIndex',index:'biochemIndex',width:'100%',hidden:true},
+{name:'bloodType',index:'bloodType',width:'100%'},
+{name:'cleanReads',index:'cleanReads',width:'100%',hidden:true},
+{name:'coldHalitosis',index:'coldHalitosis',width:'100%',hidden:true},
+{name:'completeORFs',index:'completeORFs',width:'100%',hidden:true},
+{name:'drink',index:'drink',width:'100%',hidden:true},
+{name:'gastritis',index:'gastritis',width:'100%',hidden:true},
+{name:'hostReads',index:'hostReads',width:'100%',hidden:true},
+{name:'hostReadsPerc',index:'hostReadsPerc',width:'100%',hidden:true},
+{name:'hotHalitosis',index:'hotHalitosis',width:'100%',hidden:true},
+{name:'insertSize',index:'insertSize',width:'100%',hidden:true},
+{name:'intake',index:'intake',width:'100%',hidden:true},
+{name:'married',index:'married',width:'100%',hidden:true},
+{name:'maxLength',index:'maxLength',width:'100%',hidden:true},
+{name:'name',index:'name',width:'100%'},
+{name:'obeseness',index:'obeseness',width:'100%',hidden:true},
+{name:'oralDisease',index:'oralDisease',width:'100%'},
+{name:'orfMappedReads',index:'orfMappedReads',width:'100%',hidden:true},
+{name:'rawReads',index:'rawReads',width:'100%',hidden:true},
+{name:'residence',index:'residence',width:'100%',hidden:true},
+{name:'scaffoldsUp500bp',index:'scaffoldsUp500bp',width:'100%',hidden:true},
+{name:'sex',index:'sex',width:'100%'},
+{name:'smoke',index:'smoke',width:'100%',hidden:true},
+{name:'temperature',index:'temperature',width:'100%',hidden:true},
+{name:'tenderness',index:'tenderness',width:'100%',hidden:true},
+{name:'tongueColor',index:'tongueColor',width:'100%'},
+{name:'tongueType',index:'tongueType',width:'100%'}
+
+        ],
+        height: '75%',
+        pager: "#pager",
+        rowNum: 20,
+        rowList: [10, 20, 30],
+        sortname: "id",
+        sortorder: "desc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        caption: "Samples of project"
+    }); 
+   
+	for(var i=0;i<=testdata.length;i++)
+    	$mygrid.jqGrid('addRowData',i+1,testdata[i]);
+    
+	$mygrid.jqGrid('navGrid','#pager',
+            {add:false,del:false,edit:false},//options
+            {}, // edit options
+            {}, // add options
+            {},//delete options
+            {multipleSearch:true,multipleGroup:true,showQuery:true}//search
+        );
+	$mygrid.jqGrid('navButtonAdd','#pager',{
+    	caption: "Columns",
+    	title: "Reorder Columns",
+    	onClickButton : function (){
+        	$mygrid.jqGrid('columnChooser');
+		}
+    });
+
+
+
+</script>
